@@ -36,4 +36,4 @@ HonestBill's core is self-hostable — see **[DEVELOPMENT.md](DEVELOPMENT.md)**.
 
 ## License
 
-License TBD (source-available planned). Until then: all rights reserved.
+[AGPL-3.0](LICENSE) — genuinely open source. Self-host it, fork it, audit it. The copyleft means anyone running a modified version as a network service must publish their changes — which is what keeps the "no lock-in" promise real (and stops a closed SaaS clone of your data tool).
