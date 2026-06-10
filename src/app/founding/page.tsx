@@ -127,7 +127,7 @@ export default function FoundingPage() {
 
         {/* Demo */}
         <section className="pb-16">
-          <h2 className="mb-4 text-center text-sm font-medium uppercase tracking-wide text-muted-foreground">
+          <h2 className="mb-6 text-center text-sm font-medium uppercase tracking-wide text-muted-foreground">
             See it working
           </h2>
           {demoUrl ? (
@@ -140,16 +140,63 @@ export default function FoundingPage() {
               />
             </div>
           ) : (
-            <Link
-              href="/"
-              className="flex aspect-video w-full items-center justify-center rounded-xl border border-dashed bg-muted/40 text-sm text-muted-foreground transition-colors hover:bg-muted"
-            >
-              <span className="flex items-center gap-2">
-                <Play className="size-4" /> Drop a Loom in{" "}
-                <code className="font-mono">FOUNDING_DEMO_URL</code> — or click to
-                open the live app
-              </span>
-            </Link>
+            <div className="flex flex-col gap-6">
+              <div className="grid gap-6 sm:grid-cols-2">
+                {[
+                  {
+                    src: "/demo/dashboard.png",
+                    caption:
+                      "Your dashboard — unbilled work, outstanding & paid at a glance",
+                  },
+                  {
+                    src: "/demo/time.png",
+                    caption: "Track time with a live timer",
+                  },
+                  {
+                    src: "/demo/invoice.png",
+                    caption: "One-click invoices from unbilled time & expenses",
+                  },
+                  {
+                    src: "/demo/import.png",
+                    caption: "Import your history from Harvest in minutes",
+                  },
+                ].map((shot) => (
+                  <figure
+                    key={shot.src}
+                    className="overflow-hidden rounded-xl border bg-card"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={shot.src}
+                      alt={shot.caption}
+                      className="w-full border-b"
+                    />
+                    <figcaption className="p-3 text-sm text-muted-foreground">
+                      {shot.caption}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+              <figure className="overflow-hidden rounded-xl border bg-card">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/demo/charter.png"
+                  alt="The pricing charter, in writing"
+                  className="w-full border-b"
+                />
+                <figcaption className="p-3 text-sm text-muted-foreground">
+                  The pricing charter — in writing, not marketing
+                </figcaption>
+              </figure>
+              <div className="text-center">
+                <Link
+                  href="/"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-primary"
+                >
+                  <Play className="size-4" /> Try the live demo
+                </Link>
+              </div>
+            </div>
           )}
         </section>
 
