@@ -70,7 +70,8 @@ const faqs = [
 export default function FoundingPage() {
   const depositUrl = process.env.FOUNDING_DEPOSIT_URL;
   const demoUrl = process.env.FOUNDING_DEMO_URL;
-  const repoUrl = process.env.FOUNDING_REPO_URL || "#";
+  const repoUrl =
+    process.env.FOUNDING_REPO_URL || "https://github.com/onethdias07/honest-bill";
   const paypalClientId = process.env.PAYPAL_HOSTED_CLIENT_ID;
   const paypalButtonId = process.env.PAYPAL_HOSTED_BUTTON_ID;
 
