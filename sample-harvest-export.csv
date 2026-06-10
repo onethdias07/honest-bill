@@ -1,0 +1,7 @@
+Date,Client,Project,Task,Notes,Hours,Billable Rate
+2026-05-01,Globex,Marketing Site,Design,Homepage hero concepts,2.5,110
+2026-05-02,Globex,Marketing Site,Development,Build hero + nav,3,110
+2026-05-04,Globex,Marketing Site,Development,Responsive pass,1.75,110
+2026-05-03,Initech,TPS Web App,Development,Auth flow,4.25,130
+2026-05-03,Initech,TPS Web App,Meeting,Sprint planning,0.5,130
+2026-05-05,Initech,TPS Web App,Development,Reports module,3.5,130

@@ -30,11 +30,22 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files — .env holds secrets (never commit); .env.example is the template (do commit)
 .env*
+!.env.example
 
 # vercel
 .vercel
+
+# local database (SQLite) — never commit
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+
+# private/internal notes — never commit
+INTERNAL.md
+NOTES.private.md
 
 # typescript
 *.tsbuildinfo

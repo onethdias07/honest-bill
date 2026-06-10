@@ -1,0 +1,93 @@
+// HonestBill — data model
+// Money is stored as integer CENTS everywhere (never floats) to avoid rounding bugs.
+// Durations are stored as integer SECONDS.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  name      String?
+  clients   Client[]
+  projects  Project[]
+  invoices  Invoice[]
+  createdAt DateTime  @default(now())
+}
+
+model Client {
+  id        String    @id @default(cuid())
+  name      String
+  email     String?
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projects  Project[]
+  invoices  Invoice[]
+  createdAt DateTime  @default(now())
+}
+
+model Project {
+  id          String      @id @default(cuid())
+  name        String
+  rateCents   Int         @default(0) // hourly billable rate, in cents
+  clientId    String
+  client      Client      @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  userId      String
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  timeEntries TimeEntry[]
+  expenses    Expense[]
+  createdAt   DateTime    @default(now())
+}
+
+model TimeEntry {
+  id              String   @id @default(cuid())
+  description     String   @default("")
+  durationSeconds Int
+  rateCents       Int // snapshot of project rate when logged
+  startedAt       DateTime @default(now())
+  billed          Boolean  @default(false)
+  projectId       String
+  project         Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  invoiceId       String?
+  invoice         Invoice? @relation(fields: [invoiceId], references: [id], onDelete: SetNull)
+  createdAt       DateTime @default(now())
+}
+
+model Expense {
+  id          String   @id @default(cuid())
+  description String
+  amountCents Int
+  date        DateTime @default(now())
+  billed      Boolean  @default(false)
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  invoiceId   String?
+  invoice     Invoice? @relation(fields: [invoiceId], references: [id], onDelete: SetNull)
+  createdAt   DateTime @default(now())
+}
+
+model Invoice {
+  id            String      @id @default(cuid())
+  number        String
+  status        String      @default("draft") // draft | sent | paid
+  clientId      String
+  client        Client      @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  timeEntries   TimeEntry[]
+  expenses      Expense[]
+  subtotalCents Int         @default(0)
+  taxRateBps    Int         @default(0) // tax rate in basis points (e.g. 2000 = 20%)
+  taxCents      Int         @default(0)
+  totalCents    Int         @default(0)
+  notes         String      @default("")
+  issuedAt      DateTime    @default(now())
+  dueAt         DateTime?
+  paidAt        DateTime?
+  createdAt     DateTime    @default(now())
+}
