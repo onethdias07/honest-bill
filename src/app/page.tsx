@@ -92,9 +92,11 @@ export default function LandingPage() {
     process.env.FOUNDING_REPO_URL || "https://github.com/onethdias07/honest-bill";
 
   const total = 50;
+  // Real founding-deposit count. Bump this number (and push) as deposits land —
+  // or override it with the FOUNDING_CLAIMED env var in Vercel.
   const claimed = Math.max(
     0,
-    Math.min(total, parseInt(process.env.FOUNDING_CLAIMED ?? "0", 10) || 0)
+    Math.min(total, parseInt(process.env.FOUNDING_CLAIMED ?? "1", 10) || 0)
   );
   const remaining = total - claimed;
   const pct = Math.round((claimed / total) * 100);
