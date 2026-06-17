@@ -348,6 +348,10 @@ export default function LandingPage() {
             Live demo
           </Link>{" "}
           ·{" "}
+          <Link href="/trust" className="hover:text-foreground">
+            Trust &amp; data
+          </Link>{" "}
+          ·{" "}
           <a href={repoUrl} className="hover:text-foreground">
             GitHub
           </a>
