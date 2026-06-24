@@ -96,7 +96,7 @@ export default function LandingPage() {
   // or override it with the FOUNDING_CLAIMED env var in Vercel.
   const claimed = Math.max(
     0,
-    Math.min(total, parseInt(process.env.FOUNDING_CLAIMED ?? "1", 10) || 0)
+    Math.min(total, parseInt(process.env.FOUNDING_CLAIMED ?? "2", 10) || 0)
   );
   const remaining = total - claimed;
   const pct = Math.round((claimed / total) * 100);
